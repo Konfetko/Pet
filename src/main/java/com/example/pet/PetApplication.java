@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class PetApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(PetApplication.class, args);
 
 
