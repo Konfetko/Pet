@@ -1,0 +1,55 @@
+@keyframes form {
+  0% {
+    transform: translateZ(0);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
+  100% {
+    transform: translateZ(50px);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 1.35);
+  }
+}
+.form{
+  background: #0077FF;
+  padding: 50px;
+  min-width: 350px;
+  max-width: 300px;
+  margin: auto;
+  margin-top: 10%;
+  border-radius: 15px;
+
+  &:hover{
+    animation: form 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+
+  }
+}
+.list{
+  list-style: none;
+  padding-right: 10px;
+  &>li{
+    padding-bottom: 10px;
+  }
+}
+input{
+  width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  &::placeholder{
+    text-align: center;
+    font-size: 15pt;
+    color:black;
+  }
+  &:focus{
+    outline: none;
+  }
+}
+.center{
+  margin: 0 auto;
+  display: block;
+}
+.transferButton{
+  border: 0;
+  background: transparent;
+  font-size: 12pt;
+  font-weight: bold;
+}
