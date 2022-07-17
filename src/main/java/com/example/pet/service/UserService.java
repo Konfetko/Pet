@@ -41,7 +41,7 @@ public class UserService implements UserDetailsService {
         if(findedUser!=null)return false;
         try
         {
-            user.setPass(passwordEncoder.encode(user.getPass()));
+            //user.setPass(passwordEncoder.encode(user.getPass()));
             userRepository.save(user);
         }catch (Exception ex){
             return false;

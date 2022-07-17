@@ -4,11 +4,15 @@ import axios from 'axios'
 import APILink from "../resources/APILink";
 import Layout from "../components/Layout";
 import TodoList from "../components/TodoList";
+import {useNavigate} from "react-router-dom";
 
 const MainPage = ({user}) => {
-    //let [user,setUser]=useState(null)
     let [todos,setTodos]=useState([])
+    let navigate = useNavigate()
     function getUser(){
+        if(user.idUser===0)
+            navigate("/")
+
         axios.get(APILink+"/todos/"+user.idUser)
             .then(
                 res=>{
@@ -17,13 +21,22 @@ const MainPage = ({user}) => {
             )
     }
     function doTodo(idTodo){
-        axios.get(APILink+`/todo/${user.idUser}&${idTodo}`)
+
+        axios.get(APILink+`/todo/${idTodo}`)
             .then(res=>{
-                const todo = todos.filter(x=>x.idTodo==idTodo)[0]
+                const todo = todos.filter(x=>x.idTodo===idTodo)[0]
                 todo.checked=!todo.checked
                 getUser()
             })
             .catch(x=>console.log(x))
+    }
+    function removeTodo(idTodo){
+        axios.post(APILink+`/removetodo?todoId=`+idTodo)
+            .then(res=>{
+                getUser()
+            })
+            .catch(x=>console.log(x))
+
     }
 
 
@@ -32,7 +45,7 @@ const MainPage = ({user}) => {
     return (
        <Layout>
            <div className={cls.backLayout}>
-               <TodoList todos={todos} check={doTodo}/>
+               <TodoList todos={todos} check={doTodo} remove={removeTodo}/>
            </div>
        </Layout>
     );

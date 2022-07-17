@@ -7,14 +7,18 @@ import Button from '../components/Button'
 
 const AuthPage = ({createUser}) => {
     const navigate = useNavigate()
-    const [user,setUser]=useState({login:"",pass:""})
+    const [user,setUser]=useState({login:"",pass:"",email:""})
     const [loginning,setLoginning]=useState(true)
+    function registration(){
 
+    }
     function accessCheck(e){
         e.preventDefault()
         axios.post(APILink+`/userAuth`,user).then(res=>{
-            createUser(res.data)
-            navigate("/mainPage")
+            if(res.data!=null){
+                createUser(res.data)
+                navigate("/mainPage")
+            }
         }).catch(console.log)
     }
     const authorithationForm=()=>{
@@ -54,7 +58,7 @@ const AuthPage = ({createUser}) => {
                             <input type="text"   placeholder={"Email"} onChange={(e)=>setUser({...user,email:e.target.value})}/>
                         </li>
                         <li>
-                            <Button className={cls.center} onClick={accessCheck}>Зарегистрироваться</Button>
+                            <Button className={cls.center} onClick={registration}>Зарегистрироваться</Button>
                         </li>
                         <li>
                             <button onClick={()=>setLoginning(true)} className={cls.transferButton+" "+cls.center}>Авторизация</button>

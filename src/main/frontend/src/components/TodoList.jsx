@@ -8,21 +8,19 @@ const TodoList = (props) => {
         <div>
             {
                 props.todos.map(x=>
-                    <div className={(x.checked?cls.checked:cls.default)+" "+cls.container}>
-                        <table className={cls.todoContainer}>
+                    <div key={x.idTodo} className={(x.checked?cls.checked:cls.default)+" "+cls.container}>
+                        <div className={cls.todoContainer} >
 
-                            <tr> <h2>{x.title}</h2></tr>
-                            <tr>
-                                <td>
-                                    <Button onClick={()=>props.check(x.idTodo)}>
-                                        {x.checked?"Заново":"Закончить"}
-                                    </Button>
-                                </td>
-                                <td>
-                                    <Button >Удалить</Button>
-                                </td>
-                            </tr>
-                        </table>
+                            <div className={cls.content}>{x.title}</div>
+                            <div>
+                                <Button onClick={()=>props.check(x.idTodo)}>
+                                    {x.checked?"Заново":"Закончить"}
+                                </Button>
+
+                                <Button onClick={()=>props.remove(x.idTodo)}>Удалить</Button>
+                            </div>
+
+                        </div>
                     </div>
                 )
             }

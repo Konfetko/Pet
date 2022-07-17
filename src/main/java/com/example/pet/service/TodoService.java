@@ -20,6 +20,16 @@ public class TodoService {
     public Todo checkTodo(Long id){
         var todo = todoRepository.findById(id).get();
         todo.setChecked(!todo.getChecked());
+        todoRepository.save(todo);
         return todo;
+    }
+    public boolean removeTodo(Long idTodo){
+        try{
+            todoRepository.delete(todoRepository.findById(idTodo).get());
+            return true;
+        }
+        catch (Exception ex){
+            return false;
+        }
     }
 }

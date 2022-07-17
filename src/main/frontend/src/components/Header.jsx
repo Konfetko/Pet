@@ -7,7 +7,7 @@ import classes from "../scss/Header.module.scss";
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Header = () => {
-    const history = useNavigate();
+    const navigate = useNavigate();
     const [menuOpen, setMenuOpen] = useState(false);
     const [size, setSize] = useState({
         width: undefined,
@@ -38,11 +38,11 @@ const Header = () => {
 
     const ctaClickHandler = () => {
         menuToggleHandler();
-        history("/page-cta");
+        navigate("/page-cta");
     };
-    function loginExit(){
-         return (true)?<li><button>Войти</button></li>:<li><button>Выйти</button></li>
-     }
+    const relogUser=()=>{
+        navigate("/")
+    }
     return (
         <header className={classes.header}>
             <div className={classes.header__content}>
@@ -60,7 +60,8 @@ const Header = () => {
                             <NavLink  to={"/add"}>Добавить задачу</NavLink>
                         </li>
                         <li>
-                            {loginExit()}
+                            <button onClick={relogUser}>Выйти</button>
+
                         </li>
                     </ul>
 

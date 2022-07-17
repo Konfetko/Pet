@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Arimo:400,400italic|Playfair+Display+SC:400,700&subset=latin,cyrillic);
+
 .container{
   width: 95%;
   border-radius: 25px;
@@ -12,4 +14,11 @@
 }
 .todoContainer{
   padding: 20px;
+  width: 100%;
+}
+.content{
+  font-family: 'Playfair Display SC', serif;
+  font-weight: bold;
+  font-size: 15pt;
+  margin-bottom: 25px;
 }
